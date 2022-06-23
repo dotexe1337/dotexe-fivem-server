@@ -1,0 +1,29 @@
+-- Manifest data
+fx_version 'bodacious'
+games {'gta5'}
+
+-- Resource stuff
+name 'vMenu'
+description 'Server sided trainer for FiveM. This version has been modified by dotexe for his drift server. For more information, please view: www.github.com/dotexe1337/dotexe-fivem-server'
+version 'v0.0.1'
+author 'Tom Grobbe & dotexe'
+url 'https://github.com/TomGrobbe/vMenu/'
+
+-- Adds additional logging, useful when debugging issues.
+client_debug_mode 'false'
+server_debug_mode 'false'
+
+-- Leave this set to '0' to prevent compatibility issues 
+-- and to keep the save files your users.
+experimental_features_enabled '0'
+
+-- Files & scripts
+files {
+    'Newtonsoft.Json.dll',
+    'MenuAPI.dll',
+    'config/locations.json',
+	'config/cars.json',
+	'config/teleports.json',
+}
+client_script 'vMenuClient.net.dll'
+server_script 'vMenuServer.net.dll'

@@ -1,0 +1,58 @@
+﻿using MenuAPI;
+using System.Collections.Generic;
+
+namespace vMenuClient
+{
+    public class PlayerTimeWeatherOptions
+    {
+
+        // Variables
+        private Menu menu;
+
+        public MenuCheckboxItem clientSidedEnabled;
+        public MenuCheckboxItem timeFrozen;
+        public MenuListItem timeDataList;
+        public static Dictionary<uint, MenuItem> weatherHashMenuIndex = new Dictionary<uint, MenuItem>();
+        public List<string> weatherListData = new List<string>() { "Clear", "Extrasunny", "Clouds", "Overcast", "Rain", "Clearing", "Thunder", "Smog", "Foggy", "Xmas", "Snowlight", "Blizzard", "Snow", "Halloween", "Neutral" };
+        public MenuListItem weatherList;
+
+        /// <summary>
+        /// Creates the menu.
+        /// </summary>
+        private void CreateMenu()
+        {
+            menu = new Menu("Time & Weather Options", "Time & Weather Options");
+
+            clientSidedEnabled = new MenuCheckboxItem("Client-Sided Time & Weather", "Enable or disable client-sided time and weather changes.", false);
+            menu.AddMenuItem(clientSidedEnabled);
+
+            timeFrozen = new MenuCheckboxItem("Freeze Time", "Enable or disable time freezing.", false);
+            menu.AddMenuItem(timeFrozen);
+
+            List<string> timeData = new List<string>();
+            for (var i = 0; i < 24; i++)
+            {
+                timeData.Add(i.ToString() + ".00");
+            }
+            timeDataList = new MenuListItem("Change Time", timeData, 12, "Select time of day.");
+            menu.AddMenuItem(timeDataList);
+
+            weatherList = new MenuListItem("Change Weather", weatherListData, 0, "Select weather.");
+            menu.AddMenuItem(weatherList);
+        }
+
+        /// <summary>
+        /// Create the menu if it doesn't exist, and then returns it.
+        /// </summary>
+        /// <returns>The Menu</returns>
+        public Menu GetMenu()
+        {
+            if (menu == null)
+            {
+                CreateMenu();
+            }
+            return menu;
+        }
+    }
+}
+
